@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Login from "../usuarios/Login";
+import Logout from "../usuarios/Logout";
 
 export default function Nav(lector, setLector){
 
 
     return(
         <div>
-            
            <nav>
                 <Link to="/">Inicio</Link>
                 <Link to="/registrar">Registrarse</Link>
