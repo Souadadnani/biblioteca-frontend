@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { registrar } from "../../services/usuarios.services";
+import { registrar } from "../../services/postUsuario";
 
-export default function Registro(){
+export default function Registro({setLector}){
     const [nombre, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
     const [email, setEmail] = useState("");
-    const [alias, setAlias] = useState("");
     const [password, setPassword] = useState("");
 
-    const registrarse = (e) =>{
+    const usuario = {
+        "email": email,
+        "password": password,
+        "nombre": nombre,
+        "apellidos": apellidos
+    };
+
+    const doRegistro = (e) =>{
         e.preventDefault();
-        registrar(nombre, apellidos, email, alias, password);
-    }
+        registrar(usuario, setLector);
+    };
+
     return (
-        <form onSubmit={registrarse}>
+        <form onSubmit={doRegistro}>
             <input type="text" placeholder="Nombre" value={nombre} onChange={(e)=>setNombre(e.target.value)}/><br />
             <input type="text" placeholder="Apellidos" value={apellidos}  onChange={(e)=>setApellidos(e.target.value)}/><br />
             <input type="text" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)}/><br />
-            <input type="text" placeholder="alias" value={alias} onChange={(e)=>setAlias(e.target.value)}/><br />
             <input type="password" placeholder="contraseña" value={password} onChange={(e)=>setPassword(e.target.value)}/><br />
             <button type="submit">Registrarse</button>
         </form>

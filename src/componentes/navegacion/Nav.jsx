@@ -8,11 +8,13 @@ export default function Nav(lector, setLector){
     return(
         <div>
            <nav>
-                <Link to="/">Inicio</Link>
-                <Link to="/registrar">Registrarse</Link>
-                <Link to="/login">Iniciar Sesión</Link>
-                <Link to="/catalogo">Catalogo</Link>
-                <Link to="/prestados">Prestar Libro</Link>
+                <ul>
+                    <li><Link to="/">Inicio</Link></li>
+                    <Link to="/registrar">Registrarse</Link>
+                    <Link to="/login">Iniciar Sesión</Link>
+                    <Link to="/catalogo">Catalogo</Link>
+                    <Link to="/prestados">Prestar Libro</Link>
+                </ul>
             </nav> 
         </div>
         
