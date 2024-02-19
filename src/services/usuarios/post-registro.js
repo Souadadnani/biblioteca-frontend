@@ -1,6 +1,6 @@
-import {URL_SERVER} from "../constantes";
+import {URL_SERVER} from "../../constantes";
 
-const registrar = (usuario, {setLector}) =>{
+const registrar = (usuario, navigate) =>{
 
     const options = {
         method: 'POST',
@@ -19,14 +19,11 @@ const registrar = (usuario, {setLector}) =>{
         .then(usuario=>{
             console.log(usuario);
             console.log("usuario registrado");
-            localStorage.setItem("email", JSON.stringify(usuario.email));
-         
-
+            navigate("/login");
         })
         .catch(error=>{
             console.error(error);
         })
 }
-
 
 export {registrar};

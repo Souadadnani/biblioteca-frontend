@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { registrar } from "../../services/postUsuario";
+import { registrar } from "../../services/usuarios/post-registro";
+import { useNavigate } from "react-router-dom";
 
 export default function Registro({setLector}){
     const [nombre, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const usuario = {
         "email": email,
@@ -16,7 +18,7 @@ export default function Registro({setLector}){
 
     const doRegistro = (e) =>{
         e.preventDefault();
-        registrar(usuario, setLector);
+        registrar(usuario, navigate, setLector);
     };
 
     return (

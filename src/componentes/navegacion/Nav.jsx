@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import Login from "../usuarios/Login";
-import Logout from "../usuarios/Logout";
 
-export default function Nav(lector, setLector){
+export default function Nav(){
 
 
     return(
@@ -10,10 +8,10 @@ export default function Nav(lector, setLector){
            <nav>
                 <ul>
                     <li><Link to="/">Inicio</Link></li>
-                    <Link to="/registrar">Registrarse</Link>
-                    <Link to="/login">Iniciar Sesión</Link>
-                    <Link to="/catalogo">Catalogo</Link>
-                    <Link to="/prestados">Prestar Libro</Link>
+                    <li><Link to="/registrar">Registrarse</Link></li>
+                    <li><Link to="/login">Iniciar Sesión</Link></li>
+                    <li><Link to="/catalogo">Catalogo</Link></li>
+                    <li><Link to="/prestados">Prestar Libro</Link></li>
                 </ul>
             </nav> 
         </div>
