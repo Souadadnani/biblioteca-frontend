@@ -1,11 +1,14 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 
-export default function Logout(){
+export default function Logout({lector, setLector}){
 
-    const [lector, setLector] = useOutletContext();
+    const cerrarSesion = () =>{
+        setLector(null);
+        localStorage.removeItem('token');
+    }
     return(
         <>
-            <button onClick={localStorage.removeItem('lector')}>Cerrar Sesión</button>
+            {lector? <button onClick={cerrarSesion}>Cerrar Sesión</button> : " "}
         </>
     )
 }

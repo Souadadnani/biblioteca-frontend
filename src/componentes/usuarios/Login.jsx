@@ -12,6 +12,7 @@ export default function Login(){
         email,
         password
     }
+
     const doLogin = (e) =>{
         e.preventDefault();
         login(usuario, navigate, setLector);

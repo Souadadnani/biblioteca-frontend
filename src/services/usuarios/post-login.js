@@ -1,7 +1,6 @@
 import {URL_SERVER} from "../../constantes";
 
 const login = (usuario, navigate, setLector) =>{
-
     const options = {
         method: 'POST',
         headers: {
@@ -9,27 +8,21 @@ const login = (usuario, navigate, setLector) =>{
         },
         body: JSON.stringify(usuario)
    }
-    fetch(`${URL_SERVER}usuarios?email_like=${usuario.email}`)
+    fetch(`${URL_SERVER}usuarios/login`, options)
     .then(response=>{
         if(response.ok){
             return response.json();
         }else{ throw new Error(`Error en la solicitud ${response.status}`)}
     })
-    .then(usuarios=>{
-        console.log(usuarios);
-        if(usuarios.length === 1){
-            const user = usuarios[0];
-            if(usuario.password === user.password){
-                localStorage.setItem("token", JSON.stringify(usuario.token));
-                const usuarioL = {
-                    email: user.email,
-                    nombre: user.nombre,
-                    apellidos: user.apellidos
-                }
-                setLector(usuarioL);
-                navigate("/catalogo");
-            }          
+    .then(userBD=>{
+        localStorage.setItem("token", userBD.Token);
+        const user ={
+            email: userBD.Usuario.email,
+            nombre: userBD.Usuario.nombre
         }
+        console.log(user.email);
+        setLector(user);
+        navigate("/Catalogo");        
     })
     .catch(error=>{
         console.error(error);

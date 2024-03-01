@@ -5,6 +5,7 @@ import { useState } from 'react';
 function App() {
 
   const [lector, setLector] = useState(null);
+  
   return (
     <>
       <Nav lector={lector} setLector={setLector}></Nav>
