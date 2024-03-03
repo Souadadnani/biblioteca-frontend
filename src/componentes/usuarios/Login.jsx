@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {login} from "../../services/usuarios/post-login";
+import {login} from "../../services/usuarios/usuarios";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 export default function Login(){

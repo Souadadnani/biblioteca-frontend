@@ -1,4 +1,3 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
 
 export default function Logout({lector, setLector}){
 

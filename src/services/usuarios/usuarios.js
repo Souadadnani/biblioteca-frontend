@@ -1,5 +1,28 @@
 import {URL_SERVER} from "../../constantes";
 
+const registrar = (usuario, navigate) =>{
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(usuario)
+    };
+    fetch(`${URL_SERVER}usuarios/registro`, options)
+        .then(response=>{
+            if(response.ok){
+                return response.json();
+            }else{ throw new Error(`Error en la solicitud ${response.status}`)}
+        })
+        .then(usuario=>{
+            alert(`${usuario.nombre} te has registrado correctamente`);
+            navigate("/login");
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+}
+
 const login = (usuario, navigate, setLector) =>{
     const options = {
         method: 'POST',
@@ -20,13 +43,12 @@ const login = (usuario, navigate, setLector) =>{
             email: userBD.Usuario.email,
             nombre: userBD.Usuario.nombre
         }
-        console.log(user.email);
         setLector(user);
-        navigate("/Catalogo");        
+        navigate("/");        
     })
     .catch(error=>{
         console.error(error);
     })
 }
 
-export {login};
+export {registrar, login};

@@ -1,44 +1,36 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
-import { getLibrosDisp, getNumPag } from "../../services/libros/get-libros";
+import { useOutletContext } from "react-router-dom";
+import { getLibrosDisp, getNumPag } from "../../services/libros/libros";
 import Bienvenida from "../usuarios/Bienvenida";
 import { useEffect, useState } from "react";
 import { prestarLibro } from "../../services/prestados/prestados";
+import BarraBusqueda from "./BarraBusqueda";
 
-export default function Catalogo(){
+
+export default function Catalogo() {
 
     const [lector, setLector] = useOutletContext();
-    const [actualizado, setActualizado] = useState(false);
+    const [actualizados, setActualizados] = useState(false);
     const [librosDisponibles,setLibrosDisponibles] = useState([]);
+    const [buscada, setBuscada] = useState("");
     const [numPag, setNumPag] = useState(0);
 
     useEffect(()=>{
-        getLibrosDisp(numPag, setLibrosDisponibles, setActualizado)
-    }, [lector, actualizado, numPag]);
-
-    const pagAnterior = () =>{
-        do {
-            setNumPag(numPag-1);
-        } while (numPag > 0);
-    }
-    const pagSeguiente = () =>{
-        do {
-            setNumPag(numPag+1);
-        } while (numPag <= getNumPag);
-    }
+        getLibrosDisp(numPag, setLibrosDisponibles, setActualizados)
+    }, [lector, actualizados, numPag]);
 
     const doPrestado = (idLibro) =>{
-        prestarLibro(idLibro, lector.email, setActualizado);
+        prestarLibro(idLibro, lector.email, setActualizados);
     }
 
-
     return(
-        <>
+        <main>
             {lector? <Bienvenida lector={lector} setLector={setLector}/> : ""}
-            <h2>Catalogo</h2>
+            <h2>Catálogo</h2>
+            <BarraBusqueda buscada={buscada} setBuscada={setBuscada} />
             <table>
                 <thead>
                     <tr>
-                        <th>Titulo</th>
+                        <th>Título</th>
                         <th>Autor</th>
                         <th>Ejemplares Disponibles</th>
                     </tr>
@@ -56,9 +48,8 @@ export default function Catalogo(){
                     })}
                 </tbody>
             </table>
-            <button onClick={pagAnterior}>Anterior</button>
-            <button onClick={pagSeguiente}>Seguiente</button>   
-        </>
-        
+            {(numPag > 0) ? <button onClick={()=>{if(numPag > 0) setNumPag(numPag-1);}}>Anterior</button> : ""}
+            {(numPag > getNumPag) ? "" : <button onClick={()=>{setNumPag(numPag+1);}}>Seguiente</button>} 
+        </main>       
     )
 }

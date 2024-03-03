@@ -5,18 +5,18 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Registro from './componentes/usuarios/Registro.jsx'
 import Login from './componentes/usuarios/Login.jsx'
 import Catalogo from './componentes/libros/Catalogo.jsx'
+import Prestamos from './componentes/prestamos/Prestamos.jsx'
+
 
 const router = createBrowserRouter ([
   {
     path: "/",
     element: <App />,
     children: [
-      {path: "", element: <h1>Biblioteca</h1>},
+      {path: "", element: <Catalogo />},
       {path: "registrar", element: <Registro />},
       {path: "login", element: <Login />},
-      {path: "catalogo", element: <Catalogo />},
-      /* {path: "prestados", element: <Prestados />}  */
-
+      {path: "prestamos", element: <Prestamos />}
     ]
   }
 ])

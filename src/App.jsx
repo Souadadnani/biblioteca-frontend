@@ -1,6 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import Nav from "./componentes/navegacion/Nav";
 import { useState } from 'react';
+import Nav from "./componentes/navegacion/Nav";
+import Header from './componentes/header/Header';
+import './styles/globals.css'
+import Footer from './footer/Footer';
 
 function App() {
 
@@ -8,8 +11,10 @@ function App() {
   
   return (
     <>
+      <Header></Header>
       <Nav lector={lector} setLector={setLector}></Nav>
       <Outlet context={[lector, setLector]}></Outlet>
+      <Footer></Footer>
     </>
   )
 }

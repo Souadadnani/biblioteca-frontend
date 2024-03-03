@@ -1,0 +1,91 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+header{
+    background-color: rgb(18, 21, 25);
+    width: 100%;
+    padding: 5% 0;
+    text-align: center;
+    color: aliceblue;
+}
+
+nav{
+    padding: 1%;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+}
+
+li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+li a:hover {
+    color: rgb(14, 122, 255);
+}
+main{
+    margin: 0 10%;
+}
+button{
+    height: 30px;
+    border: none;
+    color: beige;
+    background-color: rgba(6, 27, 160, 0.728);
+    margin: 10px;
+    padding: 6px;
+    border-radius: 9px;
+}
+
+table{
+    width: 80%;
+}
+th{
+    text-align: center;
+    padding: 5px;
+    color: rgb(7, 17, 70);
+}
+td{
+    padding: 5px;
+}
+td:nth-of-type(3){
+    text-align: center;
+}
+
+h2{
+    padding: 2%;
+    text-align: center;
+}
+input{
+    width: 30%;
+    height: 35px;
+    border: 1px solid rgb(7, 17, 70);
+    background-color: white;
+    padding: 0 4px;
+    margin: 10px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 0 20%;
+}
+
+footer {
+    background-color: rgb(18, 21, 25);
+    padding: 4% 0;
+    margin-top: 40px;
+}
+footer a{
+    color: aliceblue;
+}

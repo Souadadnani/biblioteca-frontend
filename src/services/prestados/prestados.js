@@ -21,9 +21,15 @@ const prestarLibro = (idLibro, email, setActualizado) =>{
         setActualizado(true);
 }
 
-
-const getLibrosPrestados = (setPrestados) =>{
-    fetch(`${URL_SERVER}libros`)
+const getLibrosPrestados = (setPrestados, setCargados) =>{
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem(("token"))}`
+        }
+    }
+    fetch(`${URL_SERVER}libros`, options)
         .then(response=>{
             if(response.ok){
                 return response.json();
@@ -35,8 +41,26 @@ const getLibrosPrestados = (setPrestados) =>{
         .catch(error=>{
             console.error(error);
         })
-        setActualizado(false);
+        setCargados(false);
 }
 
+const devolverEjemplar = (ejemplar, setCargados) =>{
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${localStorage.getItem(("token"))}`
+        }
+    }
+    fetch(`${URL_SERVER}libros/${ejemplar}`, options)
+        .then(response=>{
+            if(response.ok) return response.json();
+            else{throw new Error(`Error en la solicitud ${response.status}`)}
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+        setCargados(true);
+}
 
-export {prestarLibro, getLibrosPrestados};
+export {prestarLibro, getLibrosPrestados, devolverEjemplar};
