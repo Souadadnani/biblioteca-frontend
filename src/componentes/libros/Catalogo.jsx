@@ -1,27 +1,29 @@
 import { useOutletContext } from "react-router-dom";
-import { getLibrosBuscados, getLibrosDisp, getNumPag, getNumPagBuscada } from "../../services/libros/libros";
+import { getLibrosBuscados, getLibrosDisp, getTotalPag, getTotalPagBuscada, } from "../../services/libros/libros";
 import Bienvenida from "../usuarios/Bienvenida";
 import { useEffect, useState } from "react";
 import { prestarLibro } from "../../services/prestados/prestados";
 import BarraBusqueda from "./BarraBusqueda";
-
 
 export default function Catalogo() {
 
     const [lector, setLector] = useOutletContext();
     const [actualizados, setActualizados] = useState(false);
     const [librosDisponibles,setLibrosDisponibles] = useState([]);
+    const [pagActual, setPagActual] = useState(0);
     const [buscada, setBuscada] = useState("");
-    const [numPag, setNumPag] = useState(0);
+    const [totalPaginas, setTotalPaginas] = useState(0);
 
     useEffect(()=>{
-        console.log(getNumPagBuscada(buscada));
-        if(buscada !== ""){
-            getLibrosBuscados(numPag, buscada, setLibrosDisponibles, setActualizados);
-        }else{           
-            getLibrosDisp(numPag, setLibrosDisponibles, setActualizados);        
-        }   
-    }, [lector, buscada, actualizados, numPag]);
+        if(buscada === ""){
+            getTotalPag(setTotalPaginas);
+            getLibrosDisp(pagActual, setLibrosDisponibles, setActualizados);
+        }else{
+            getTotalPagBuscada(buscada, setTotalPaginas);
+            getLibrosBuscados(pagActual, buscada, setLibrosDisponibles, setActualizados);
+        }
+           
+    }, [lector, buscada, actualizados, pagActual]);
 
     const doPrestado = (idLibro) =>{
         prestarLibro(idLibro, setActualizados);
@@ -53,8 +55,8 @@ export default function Catalogo() {
                     })}
                 </tbody>
             </table>
-            {(numPag > 0) ? <button onClick={()=>{if(numPag > 0) setNumPag(numPag-1);}}>Anterior</button> : ""}
-            {(numPag > getNumPag) ? "" : <button onClick={()=>{setNumPag(numPag+1);}}>Seguiente</button>} 
+            {(pagActual > 0) ? <button onClick={()=>{if(pagActual > 0) setPagActual(pagActual-1);}}>Anterior</button> : ""}
+            {(pagActual >= totalPaginas) ? "" : <button onClick={()=>{if(pagActual < totalPaginas) setPagActual(pagActual+1);}}>Seguiente</button>} 
         </main>       
     )
 }
