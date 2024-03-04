@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { getLibrosDisp, getNumPag } from "../../services/libros/libros";
+import { getLibrosBuscados, getLibrosDisp, getNumPag, getNumPagBuscada } from "../../services/libros/libros";
 import Bienvenida from "../usuarios/Bienvenida";
 import { useEffect, useState } from "react";
 import { prestarLibro } from "../../services/prestados/prestados";
@@ -15,11 +15,16 @@ export default function Catalogo() {
     const [numPag, setNumPag] = useState(0);
 
     useEffect(()=>{
-        getLibrosDisp(numPag, setLibrosDisponibles, setActualizados)
-    }, [lector, actualizados, numPag]);
+        console.log(getNumPagBuscada(buscada));
+        if(buscada !== ""){
+            getLibrosBuscados(numPag, buscada, setLibrosDisponibles, setActualizados);
+        }else{           
+            getLibrosDisp(numPag, setLibrosDisponibles, setActualizados);        
+        }   
+    }, [lector, buscada, actualizados, numPag]);
 
     const doPrestado = (idLibro) =>{
-        prestarLibro(idLibro, lector.email, setActualizados);
+        prestarLibro(idLibro, setActualizados);
     }
 
     return(

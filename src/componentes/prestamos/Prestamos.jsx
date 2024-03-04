@@ -4,14 +4,14 @@ import { devolverEjemplar, getLibrosPrestados } from "../../services/prestados/p
 export default function Prestamos() {
 
     const [prestados, setPrestados] = useState([]);
-    const [cargados, setCargados] = useState(false);
+    const [devueltos, setDevueltos] = useState(false);
 
     useEffect(()=>{
-        getLibrosPrestados(setPrestados, setCargados);
-    }, [cargados]);
+        getLibrosPrestados(setPrestados, setDevueltos);
+    }, [devueltos]);
 
     const devolver = (ejemplar) =>{
-        devolverEjemplar(ejemplar, setCargados);
+        devolverEjemplar(ejemplar, setDevueltos);
     }
 
     return(
