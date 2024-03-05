@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Nav from "./componentes/navegacion/Nav";
 import Header from './componentes/header/Header';
 import './styles/globals.css'
-import Footer from './footer/Footer';
+import Footer from './componentes/footer/Footer';
 
 function App() {
 

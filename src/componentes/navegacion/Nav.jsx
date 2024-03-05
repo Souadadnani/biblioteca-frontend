@@ -5,7 +5,7 @@ export default function Nav({lector, setLector}){
     return(
         <nav>
             <ul>
-                <li><Link to="/">Inicio</Link></li>
+                <li><Link to="/">Catálogo</Link></li>
                 {lector? "" : <li><Link to="/registrar">Registrarse</Link></li>}
                 {lector? "" : <li><Link to="/login">Iniciar Sesión</Link></li>}
                 {lector? <li><Link to="/prestamos">Préstamos</Link></li> : ""}
