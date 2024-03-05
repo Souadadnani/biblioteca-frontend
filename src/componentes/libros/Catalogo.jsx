@@ -1,6 +1,5 @@
 import { useOutletContext } from "react-router-dom";
 import { getLibrosBuscados, getLibrosDisp, getTotalPag, getTotalPagBuscada, } from "../../services/libros/libros";
-import Bienvenida from "../usuarios/Bienvenida";
 import { useEffect, useState } from "react";
 import { prestarLibro } from "../../services/prestados/prestados";
 import BarraBusqueda from "./BarraBusqueda";
@@ -31,7 +30,6 @@ export default function Catalogo() {
 
     return(
         <main>
-            {lector? <Bienvenida lector={lector} setLector={setLector}/> : ""}
             <h2>Catálogo</h2>
             <BarraBusqueda buscada={buscada} setBuscada={setBuscada} />
             <table>
@@ -57,7 +55,7 @@ export default function Catalogo() {
             </table>
             {(pagActual > 0) ? <button onClick={()=>{if(pagActual > 0) setPagActual(pagActual-1);}}>Anterior</button> : ""}
             <span>{pagActual+1} de {totalPaginas+1}</span>
-            {(pagActual >= totalPaginas) ? "" : <button onClick={()=>{if(pagActual < totalPaginas) setPagActual(pagActual+1);}}>Seguiente</button>} 
+            {(pagActual >= totalPaginas) ? "" : <button onClick={()=>{if(pagActual < totalPaginas) setPagActual(pagActual+1);}}>Siguiente</button>} 
         </main>       
     )
 }
