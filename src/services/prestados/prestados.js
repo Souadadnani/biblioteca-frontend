@@ -20,7 +20,7 @@ const prestarLibro = (idLibro, setActualizado) =>{
         })
 }
 
-const getLibrosPrestados = (setPrestados, setDevueltos) =>{
+const getLibrosPrestados = (lector, setPrestados, setDevueltos) =>{
     const options = {
         method: 'GET',
         headers: {
@@ -36,7 +36,11 @@ const getLibrosPrestados = (setPrestados, setDevueltos) =>{
             }else{throw new Error(`error en la solicitud "${response.statusText}`)}
         })
         .then(data=>{
-            setPrestados(data);
+            if(lector){
+                setPrestados(data);
+            }else{
+                alert("Inicia sesión para poder ver tus préstamos");
+            }
         })
         .catch(error=>{
             console.error(error);

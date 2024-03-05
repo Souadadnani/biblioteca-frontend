@@ -47,6 +47,7 @@ const login = (usuario, navigate, setLector) =>{
         navigate("/");        
     })
     .catch(error=>{
+        alert(`Datos de login incorrectos`);
         console.error(error);
     })
 }

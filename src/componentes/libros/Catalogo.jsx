@@ -56,6 +56,7 @@ export default function Catalogo() {
                 </tbody>
             </table>
             {(pagActual > 0) ? <button onClick={()=>{if(pagActual > 0) setPagActual(pagActual-1);}}>Anterior</button> : ""}
+            <span>{pagActual+1} de {totalPaginas+1}</span>
             {(pagActual >= totalPaginas) ? "" : <button onClick={()=>{if(pagActual < totalPaginas) setPagActual(pagActual+1);}}>Seguiente</button>} 
         </main>       
     )

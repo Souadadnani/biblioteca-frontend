@@ -2,6 +2,7 @@ import { useState } from "react";
 import { registrar } from "../../services/usuarios/usuarios";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Registro({setLector}){
     const [nombre, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
