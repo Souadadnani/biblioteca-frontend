@@ -1,7 +1,7 @@
 import {URL_SERVER} from "../../constantes";
 
 const getTotalPag = (setTotalPaginas) =>{
-    fetch(`http://44.198.34.104:8080/api/libros/paginas`)
+    fetch(`${URL_SERVER}libros/paginas`)
         .then(response=>{
             if(response.ok){
                 return response.json();
