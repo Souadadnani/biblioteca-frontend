@@ -31,7 +31,7 @@ export default function Catalogo() {
     return(
         <main>
             <h2>Catálogo</h2>
-            <BarraBusqueda buscada={buscada} setBuscada={setBuscada} />
+            <BarraBusqueda buscada={buscada} setBuscada={setBuscada} setPagActual={setPagActual}/>
             <table>
                 <thead>
                     <tr>
