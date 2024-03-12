@@ -3,7 +3,7 @@ import { registrar } from "../../services/usuarios/usuarios";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Registro({setLector}){
+export default function Registro(){
     const [nombre, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
     const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ export default function Registro({setLector}){
 
     const doRegistro = (e) =>{
         e.preventDefault();
-        registrar(usuario, navigate, setLector);
+        registrar(usuario, navigate);
     };
 
     return (
