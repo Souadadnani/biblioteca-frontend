@@ -1,4 +1,4 @@
-name: Deploy Frontend
+name: Update Frontend
 
 on:
   push:
@@ -22,5 +22,8 @@ jobs:
           script: |
             cd /home/ubuntu/biblioteca/biblioteca-frontend
             git pull
+            rm -r dist
+            npm run build
+            cp -r dist/* /var/www/html
 
           
