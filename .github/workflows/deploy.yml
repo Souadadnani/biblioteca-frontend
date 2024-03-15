@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Install dependencies
+          run: npm install
 
       - name: SSH into EC2 and Start Frontend
         uses: appleboy/ssh-action@master
